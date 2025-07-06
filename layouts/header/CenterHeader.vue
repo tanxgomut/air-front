@@ -113,7 +113,7 @@ const toggleThemeLanguage = () => {
                 @click="toggleThemeLanguage">
                 <v-btn icon variant="text" color="primary" class="" size="small">
                   <v-avatar size="22">
-                    <p>{{ locale === 'en' ? 'EN' : 'TH' }}</p>
+                    <p class="text-primary text-subtitle-1">{{ locale === 'en' ? 'EN' : 'TH' }}</p>
                   </v-avatar>
                 </v-btn>
               </v-sheet>

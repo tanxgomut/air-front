@@ -8,7 +8,6 @@ import { onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useBlogGridStore } from '@/store/blog';
 import { BrandFacebookIcon, BrandLinkedinIcon, BrandTwitterIcon } from 'vue-tabler-icons';
-// import RelatedPortfolio from '../related-portfolio/index.vue';
 const title = useRoute();
 const getTitle = title.path.split('/').pop();
 

@@ -66,7 +66,7 @@ function handleScroll() {
           <v-toolbar class="h-auto d-flex">
             <Logo />
             <v-list
-              class="d-md-flex d-none flex-wrap py-0 pl-16 ml-4 menu text-capitalize ml-auto"
+              class="d-md-flex d-none flex-wrap py-0 pl-16 ml-4 menu text-capitalize "
             >
               <!---Menu Loop -->
               <template v-for="(item, i) in sidebarItem">
