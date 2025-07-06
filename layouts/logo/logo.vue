@@ -1,9 +1,10 @@
 <script setup lang="ts">
+const localePath = useLocalePath()
 </script>
 <template>
-    <div class="logo">
-      <NuxtLink to="/" >
-        <img src="/images/logos/logo.svg" />
+    
+      <NuxtLink :to="localePath('/')" >
+        <NuxtImg src="/images/logos//logo.svg" class="w-[170px]" />
       </NuxtLink>
-    </div>
+   
   </template>

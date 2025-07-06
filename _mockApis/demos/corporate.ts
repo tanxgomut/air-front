@@ -9,17 +9,17 @@ const ServicesData: Services[] = [
     {
         img: icon1,
         title: '4.86',
-        desc: 'Out of 5 stars from 3896 reviews on google platform',
+        desc: 'คะแนนเฉลี่ยจากผู้ใช้งานกว่า 3,800 ราย',
     },
     {
         img: icon2,
         title: '364',
-        desc: 'Client testimonials received in year 2024',
+        desc: 'รีวิวลูกค้าจริงที่ได้รับในปี 2024',
     },
     {
         img: icon3,
-        title: '45M+',
-        desc: 'Revenue generated through new projects & marketing',
+        title: '12,500+',
+        desc: 'เครื่องปรับอากาศที่เราดูแลในปีที่ผ่านมา',
     },
 ]
 
@@ -49,4 +49,4 @@ const BuildFeaturesData: BuildFeatures[] = [
     }
 ]
 
-export { ServicesData,BuildFeaturesData };
+export { ServicesData, BuildFeaturesData };

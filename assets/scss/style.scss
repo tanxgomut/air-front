@@ -9,6 +9,26 @@
 @import 'layout/footer';
 
 /*components*/
+// @import './components/VBreadcrumb';
+// @import './components/VAlert';
+// @import './components/VButtons';
+// @import './components/VCard';
+// @import './components/VCarousel';
+// @import './components/VField';
+// @import './components/VList';
+// @import './components/VInput';
+// @import './components/VNavigationDrawer';
+// @import './components/VShadow';
+// @import './components/VSwitch';
+// @import './components/VSelectionControl';
+// @import './components/VTextField';
+// @import './components/VTextarea';
+// @import './components/VTabs';
+// @import './components/VTable';
+// @import './components/VExpansionpanel';
+// @import './components/VPagination';
+// @import './components/VTooltip';
+
 @import './components/VBreadcrumb';
 @import './components/VAlert';
 @import './components/VButtons';
@@ -26,8 +46,10 @@
 @import './components/VTabs';
 @import './components/VTable';
 @import './components/VExpansionpanel';
-@import './components/VPagination';
 @import './components/VTooltip';
+@import './components/VDatatable';
+@import './components/VStepper';
+@import './components/VLabs';
 
 //Nft Demo
 @import 'demos/nft';

@@ -1,5 +1,4 @@
 import { Chance } from 'chance';
-import { random } from 'lodash';
 import { sub } from 'date-fns';
 import mock from '../mockAdapter';
 
@@ -16,7 +15,6 @@ import blog9 from '/images/blog-grid/grid-sidelap.jpg';
 import profile1 from '/images/blog-grid/jerome.jpg';
 import profile2 from '/images/blog/cyrus.jpg';
 
-import { uniqueId } from 'lodash';
 
 import type { BlogGridView } from '@/types/pages/blogTypes';
 

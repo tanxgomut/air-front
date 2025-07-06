@@ -1,12 +1,13 @@
 // ===============================|| Blank Layout ||=============================== //
 <script setup lang="ts">
 import CookieConsent from '@/components/shared/CookieConsent.vue'
+import ConfirmDialog from '@/components/shared/ConfirmDialog.vue'
+import Header from '@/layouts/header/CenterHeader.vue';
 </script>
 <template>
-  <v-app>
-    <NuxtPage />
-    <!-- <CookieConsent /> -->
-  </v-app>
+
+  <Header />
+  <NuxtPage />
+  <CookieConsent />
+
 </template>
-
-

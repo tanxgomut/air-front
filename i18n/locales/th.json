@@ -1,0 +1,36 @@
+{
+  "seo": {
+    "suffix": "จองคิวล้างแอร์ออนไลน์ - AirCleanPro",
+    "index": {
+      "title": "บริการล้างแอร์ถึงบ้าน",
+      "description": "ล้างแอร์โดยทีมช่างมืออาชีพทั่วกรุงเทพฯ จองคิวออนไลน์ได้ทันที ง่าย สะดวก รวดเร็ว",
+      "ogImage": "/images/seo/index-th.jpg",
+      "twitterImage": "/images/seo/index-twitter-th.jpg"
+    },
+    "contact": {
+      "title": "ติดต่อเรา",
+      "description": "ติดต่อทีมช่างล้างแอร์ถึงบ้าน บริการรวดเร็ว",
+      "ogImage": "/images/seo/contact-th.jpg",
+      "twitterImage": "/images/seo/contact-twitter-th.jpg"
+    },
+    "faq": {
+      "title": "คำถามที่พบบ่อย",
+      "description": "รวมคำถามเกี่ยวกับบริการล้างแอร์ที่พบบ่อย",
+      "ogImage": "/images/seo/faq-th.jpg"
+    },
+    "booking": {
+      "title": "จองคิวล้างแอร์",
+      "description": "จองคิวล้างแอร์กับทีมงานมืออาชีพ ง่าย รวดเร็ว พร้อมรับประกันความสะอาด",
+      "ogImage": "/images/seo/booking-th.jpg",
+      "twitterImage": "/images/seo/booking-twitter-th.jpg"
+    }
+  },
+  "welcome": "ยินดีต้อนรับ",
+  "home": "บ้าน",
+  "condo": "คอนโด",
+  "office": "อาคารสำนักงาน",
+  "townhouse": "ทาว์เฮาส์/ทาวน์โฮม",
+  "mall": "ห้างสรรพสินค้า",
+  "commercial": "อาคารพาณิชย์",
+  "other": "อื่นๆ"
+}

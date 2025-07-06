@@ -1,9 +1,20 @@
 html {
 
-    .bg-primary, .bg-secondary,.bg-success, .bg-warning,.bg-info, .bg-purple {
+    .bg-primary,
+    .bg-secondary,
+    .bg-success,
+    .bg-warning,
+    .bg-info,
+    .bg-purple {
         color: $white !important;
     }
-    .text-h1,.text-h2,.text-h3,.text-h4,.text-h5,.text-h6{
+
+    .text-h1,
+    .text-h2,
+    .text-h3,
+    .text-h4,
+    .text-h5,
+    .text-h6 {
         color: rgb(var(--v-theme-dark));
     }
 
@@ -11,7 +22,7 @@ html {
         transition: 0.5s;
 
         &:hover {
-            color: rgb(var(--v-theme-primary)) !important;
+            color: rgb(var(--v-theme-lightprimary)) !important;
         }
     }
 
@@ -22,6 +33,10 @@ html {
             opacity: 1 !important;
         }
     }
+}
+
+.text-muted {
+    color: rgb(var(--v-theme-textSecondary));
 }
 
 .border-primary {
@@ -75,9 +90,11 @@ html {
 .border-left {
     border-left: 2px solid rgb(var(--v-theme-lightborder));
 }
+
 .border-left-primary {
     border-left: 2px solid rgb(var(--v-theme-primary));
 }
+
 .border-right {
     border-right: 1px solid rgb(var(--v-theme-lightborder));
 }
@@ -141,26 +158,31 @@ li {
     text-overflow: ellipsis;
     white-space: normal;
 }
+
 @media screen and (max-width:576px) {
-    .m-btn100{
+    .m-btn100 {
         width: 100%;
     }
 }
-.mt-n95{
+
+.mt-n95 {
     margin-top: -95px;
 }
-.mt-95{
+
+.mt-95 {
     margin-top: 95px;
 }
-.gap-2{
+
+.gap-2 {
     gap: 8px;
 }
+
 .gap-3 {
     gap: 16px;
 }
-.v-dialog{
-    &.dialog-mw{
+
+.v-dialog {
+    &.dialog-mw {
         max-width: 800px;
     }
 }
-

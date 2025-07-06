@@ -1,3 +1,10 @@
+<script setup lang="ts">
+const { $toast } = useNuxtApp()
+function notify() {
+    $toast.success('success!')
+}
+
+</script>
 <template>
     <div class="corporate-banner pt-md-16 pt-8 pb-md-12 pb-8 mt-95">
         <v-container>
@@ -9,7 +16,7 @@
                     </div>
                     <h1 class="text-h1 text-dark mb-6" >Amazingly fexible, customizable and easy to use</h1>
                     <p class="text-body-1 text-muted mb-8">Build high quality landing pages using Landingpro now.</p>
-                    <v-btn variant="flat" color="primary" size="large" class="px-9">get started</v-btn>
+                    <v-btn variant="flat" color="primary" size="large" class="px-9" @click="notify()">get started</v-btn>
                     <div class="d-flex align-center mt-11  mb-md-0 mb-sm-5 mb-8">
                         <div class="d-flex align-center">
                             <v-avatar size="48" class="mr-n2">

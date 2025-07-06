@@ -4,9 +4,34 @@
             border-radius: $border-radius-root !important;
             min-width: auto !important;
             &.v-slide-group-item--active {
-                background: rgb(var(--v-theme-primary));
+                background: rgb(var(--v-theme-primary)) !important;
                 
             }
         }
+    }
+}
+
+.v-data-table{
+    th.v-data-table__th{
+        font-size:16px;
+        color: rgba(var(--v-theme-on-surface), var(--v-medium-emphasis-opacity));
+    }
+    td.v-data-table__td{
+        font-size: 14px;
+        text-wrap: nowrap;
+    }
+    .v-data-table-footer{
+        padding: 15px 8px;
+    }
+    .v-data-table-header__sort-badge{
+        background-color:rgb(var(--v-theme-borderColor)) !important;
+    }
+    .tdhead{
+        font-size:16px;
+    }
+}
+@media screen and (max-width:767px) {
+    .v-data-table-footer{
+        justify-content: center;
     }
 }

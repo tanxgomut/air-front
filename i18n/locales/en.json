@@ -1,0 +1,35 @@
+{
+  "seo": {
+    "suffix": "Book Aircon Cleaning Online - AirCleanPro",
+    "index": {
+      "title": "Home Aircon Cleaning Services",
+      "description": "Professional air conditioner cleaning in Bangkok. Book your appointment online quickly and easily.",
+      "ogImage": "/images/seo/index-en.jpg",
+      "twitterImage": "/images/seo/index-twitter-en.jpg"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "description": "Get in touch with our air cleaning team for fast service.",
+      "ogImage": "/images/seo/contact-en.jpg"
+    },
+    "faq": {
+      "title": "FAQ",
+      "description": "Frequently asked questions about our air cleaning service.",
+      "ogImage": "/images/seo/faq-en.jpg"
+    },
+    "booking": {
+      "title": "Book Aircon Cleaning",
+      "description": "Easily book an aircon cleaning appointment with our expert team – fast and guaranteed clean.",
+      "ogImage": "/images/seo/booking-en.jpg",
+      "twitterImage": "/images/seo/booking-twitter-en.jpg"
+    }
+  },
+  "welcome": "Welcome",
+  "home": "House",
+  "condo": "Condo",
+  "office": "Office Building",
+  "townhouse": "Townhouse",
+  "mall": "Shopping Mall",
+  "commercial": "Commercial Building",
+  "other": "Other"
+}

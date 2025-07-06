@@ -9,8 +9,14 @@
 }
 
 .v-field {
-    font-size: 1rem;
-    color:  rgba(var(--v-theme-dark));
+    font-size: 14px !important;
+    color:  rgba(var(--v-theme-textPrimary));
+    input[type="date"]{
+        display: block !important;
+    }
+    input[type="time"]{
+        display: block !important;
+    }
 }
 
 // select outlined
@@ -19,4 +25,8 @@
 .v-field--variant-outlined .v-field__outline__notch::after,
 .v-field--variant-outlined .v-field__outline__end {
     opacity: 1;
+}
+
+.v-field--active .v-label.v-field-label{
+    color: rgb(var(--v-theme-textPrimary));
 }

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref, onBeforeMount } from "vue";
 import { useTheme } from 'vuetify'
 import Logo from "@/layouts/logo/logo.vue";
 import { Menu2Icon, SearchIcon } from "vue-tabler-icons";
@@ -10,6 +9,22 @@ import NavGroup from "./NavGroup/index.vue";
 import NavItem from "./NavItem/index.vue";
 import NavCollapse from "./NavCollapse/NavCollapse.vue";
 import MobileNavCollapse from "./NavCollapse/MobileNavCollapse.vue";
+
+import {
+    UserCircleIcon,
+    BellIcon,
+    ArticleIcon,
+    LockIcon,
+} from "vue-tabler-icons";
+
+const { locale } = useI18n()
+const switchLocalePath = useSwitchLocalePath()
+const localePath = useLocalePath()
+const router = useRouter()
+
+const en = ref({ title: 'English', subtext: 'UK', value: 'en', avatar: '/images/it/mobile.png' })
+const th = ref({ title: 'Thai', subtext: 'TH', value: 'th', avatar: '/images/it/project.png' })
+
 
 const drawer = ref(false);
 //For on Scroll Effect on Header
@@ -31,6 +46,12 @@ const theme = useTheme()
 
 const toggleTheme = () => {
   theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
+}
+
+const toggleThemeLanguage = () => {
+  const newLocale = locale.value === 'en' ? 'th' : 'en'
+  const newPath = switchLocalePath(newLocale)
+  if (newPath) router.push(newPath)
 }
 </script>
 
@@ -79,17 +100,32 @@ const toggleTheme = () => {
 
               </div>
               <!-----Login Button and Popup----->
-              <Login />
+
               <!-----Register Button and Popup----->
-              <Register />
-              <v-sheet rounded="circle" class="cursor-pointer text-center  pl-2" elevation="0"
-                @click="toggleTheme">
-                <v-btn icon :class="theme.global.name.value" class="" size="small" variant="text"
-                  color="primary">
+              <v-sheet rounded="circle" class="cursor-pointer text-center ml-2 " elevation="0" @click="toggleTheme">
+                <v-btn icon :class="theme.global.name.value" class="" size="small" variant="text" color="primary">
                   <SunIcon v-if="theme.global.name.value == 'light'" :class="theme.global.name.value" height="22" />
                   <MoonIcon v-if="theme.global.name.value == 'dark'" :class="theme.global.name.value" height="22" />
                 </v-btn>
               </v-sheet>
+
+              <v-sheet rounded="circle" class="cursor-pointer text-center ml-2" elevation="0"
+                @click="toggleThemeLanguage">
+                <v-btn icon variant="text" color="primary" class="" size="small">
+                  <v-avatar size="22">
+                    <NuxtImg :src="locale === 'en' ? en.avatar : th.avatar" :alt="locale" width="35" height="22" />
+                  </v-avatar>
+                </v-btn>
+              </v-sheet>
+              <Login />
+              <NuxtLink :to="localePath('/profile')">
+                <v-sheet rounded="circle" class="cursor-pointer text-center ml-2" elevation="0">
+                  <v-btn icon variant="text" color="primary" class="" size="small">
+                    <UserCircleIcon class="" size="30" />
+                  </v-btn>
+                </v-sheet>
+              </NuxtLink>
+
             </div>
             <Menu2Icon class="d-md-none d-flex drawer-icon no-effect ml-auto mr-0" @click.stop="drawer = !drawer"
               size="30">
