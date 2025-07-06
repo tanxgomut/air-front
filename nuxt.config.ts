@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
     'vue-sonner/nuxt',
     '@nuxtjs/i18n',
+    '@nuxtjs/color-mode',
   ],
   css: [
     '@/assets/css/tailwind.css',
@@ -68,14 +69,20 @@ export default defineNuxtConfig({
       { code: 'th', iso: 'th-TH', name: 'ไทย', file: 'th.json' }
     ],
     lazy: true,
-    langDir: 'locales/',
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n_redirected',
-      redirectOn: 'root'
-    }
+    // colorMode config moved to modules array below
   },
 
+   colorMode: {
+    preference: 'light', // default value of $colorMode.preference
+    fallback: 'light', // fallback value if not system preference found
+    hid: 'nuxt-color-mode-script',
+    globalName: '__NUXT_COLOR_MODE__',
+    componentName: 'ColorScheme',
+    classPrefix: '',
+    classSuffix: '',
+    storage: 'localStorage', // or 'sessionStorage' or 'cookie'
+    storageKey: 'nuxt-color-mode'
+  },
   devServerHandlers: [],
   compatibilityDate: "2024-12-04",
 });

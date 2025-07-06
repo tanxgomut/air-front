@@ -11,23 +11,25 @@ import NavCollapse from "./NavCollapse/NavCollapse.vue";
 import MobileNavCollapse from "./NavCollapse/MobileNavCollapse.vue";
 
 import {
-    UserCircleIcon,
-    BellIcon,
-    ArticleIcon,
-    LockIcon,
+  UserCircleIcon,
+  BellIcon,
+  ArticleIcon,
+  LockIcon,
 } from "vue-tabler-icons";
 
 const { locale } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
 const localePath = useLocalePath()
 const router = useRouter()
+const colorMode = useColorMode()
+const theme = useTheme()
 
 const en = ref({ title: 'English', subtext: 'UK', value: 'en', avatar: '/images/it/mobile.png' })
 const th = ref({ title: 'Thai', subtext: 'TH', value: 'th', avatar: '/images/it/project.png' })
 
 
 const drawer = ref(false);
-//For on Scroll Effect on Header
+
 onBeforeMount(() => {
   window.addEventListener("scroll", handleScroll);
 });
@@ -40,13 +42,19 @@ function handleScroll() {
   }
 }
 
-
-
-const theme = useTheme()
+// toggle theme based on color mode preference
+watch(() => colorMode.preference, (newPreference) => {
+  if (newPreference) {
+    theme.global.name.value = newPreference
+  }
+})
 
 const toggleTheme = () => {
-  theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
+  const newTheme = theme.global.current.value.dark ? 'light' : 'dark'
+  theme.global.name.value = newTheme
+  colorMode.preference = newTheme 
 }
+
 
 const toggleThemeLanguage = () => {
   const newLocale = locale.value === 'en' ? 'th' : 'en'

@@ -85,12 +85,13 @@ const dark: ThemeDefinition = {
 
 export default defineNuxtPlugin((nuxtApp) => {
     const locale = nuxtApp.$i18n.locale
+    const colorMode = useColorMode()
     const vuetify = createVuetify({
         ssr: true,
         components,
         directives,
         theme: {
-            defaultTheme: "light",
+            defaultTheme: colorMode.preference === 'dark' ? 'dark' : 'light',
             themes: {
                 light: themecolors,
                 dark: dark,
@@ -124,6 +125,5 @@ export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.use(vuetify);
     nuxtApp.vueApp.use(PerfectScrollbar);
     nuxtApp.vueApp.use(VueTablerIcons);
-
-
+    
 });
