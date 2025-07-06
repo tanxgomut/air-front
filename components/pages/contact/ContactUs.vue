@@ -49,10 +49,6 @@ import { ArrowRightIcon } from 'vue-tabler-icons';
                 </div>
                 <div class="mb-sm-16 mb-10 pb-md-5">
                     <MapsLocation/>
-                    <!-- <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d133882.93730002322!2d70.40910303944116!3d20.89705364701693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bfd329f0417cb75%3A0x2f5a510de9857963!2sShree%20Somnath%20Jyotirling%20Temple!5e0!3m2!1sen!2sin!4v1666170979861!5m2!1sen!2sin"
-                        width="100%" height="400" style="border:0;" allowfullscreen="true" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe> -->
                 </div>
             </v-container>
         </div>

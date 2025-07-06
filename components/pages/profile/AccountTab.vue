@@ -6,8 +6,6 @@ const location = ref(['United States', 'United Kingdom', 'Japan', 'Thailand']);
 
 
 /*change password*/
-// password
-const currentPwd = ref('')
 
 /*personal detail*/
 const namemodel = ref('Mathew Anderson');

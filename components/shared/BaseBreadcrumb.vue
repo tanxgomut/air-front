@@ -19,7 +19,7 @@ const props = defineProps({
                                 <div class="d-flex align-center text-h3 "><ChevronRightIcon size="18"/></div>
                             </template>
                             <template v-slot:title="{ item }">
-                                <h6 class="text-h6 font-weight-regular">{{ item.text }}</h6>
+                                <h6 class="text-h6 font-weight-regular">{{ item.title }}</h6>
                             </template>
                         </v-breadcrumbs>
                     </div>

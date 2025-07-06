@@ -40,11 +40,7 @@ const {
 
 const dialog = ref<boolean>(false)
 
-// const airType = ref([...airTypeItem])
-const timesSelect = ref<string>('')
-const selectedDate = ref<string | null>(null)
 const minDate = format(subDays(new Date(), 1), 'yyyy-MM-dd')
-// const selectedLocation = ref<string>('')
 const options = [
     { label: t('home'), value: 'home' },
     { label: t('condo'), value: 'condo' },
@@ -460,7 +456,6 @@ const scrollToBooking = () => {
                     <div v-if="stepBooking === 3" key="step3" class="">
                         2
                     </div>
-
                 </div>
             </v-container>
         </div>

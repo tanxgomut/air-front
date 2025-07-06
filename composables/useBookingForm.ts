@@ -5,11 +5,11 @@ import airTypedefault from '@/_mockApis/pages/booking';
 
 export const useBookingForm = (airTypeItem: any[]) => {
   const { t } = useI18n()
-  // ข้อมูลประเภทแอร์
+
   const airType = ref<any[]>([...airTypeItem])
   const slips = ref<{ file: File; preview: string } | null>(null)
   const imagesBooking = ref<{ file: File; preview: string }[]>([])
-  // สร้าง schema
+
   const schema = object({
     name: string().required(t('กรุณากรอกชื่อ')),
     tel: string()
@@ -48,7 +48,6 @@ export const useBookingForm = (airTypeItem: any[]) => {
     },
   })
 
-  // ใช้ useField สำหรับ binding กับ <v-model>
   const { value: name } = useField<string>('name')
   const { value: tel } = useField<string>('tel')
   const { value: address } = useField<string>('address')
@@ -56,7 +55,6 @@ export const useBookingForm = (airTypeItem: any[]) => {
   const { value: time } = useField<string>('time')
   const { value: selectedLocation } = useField<string>('selectedLocation')
 
-  // sync airType กับ form
   watch(airType, (val) => {
     setFieldValue('airType', val)
   }, { deep: true }
@@ -70,10 +68,8 @@ export const useBookingForm = (airTypeItem: any[]) => {
     resetForm()
   }
 
-  // ส่งฟอร์ม validate
   const validBookingAir = handleSubmit(() => true, () => false)
 
-  // ส่งฟอร์ม
   const submitBookingAir = handleSubmit((formData) => {
     const completeData = {
       ...formData,

@@ -113,7 +113,7 @@ const toggleThemeLanguage = () => {
                 @click="toggleThemeLanguage">
                 <v-btn icon variant="text" color="primary" class="" size="small">
                   <v-avatar size="22">
-                    <NuxtImg :src="locale === 'en' ? en.avatar : th.avatar" :alt="locale" width="35" height="22" />
+                    <p>{{ locale === 'en' ? 'EN' : 'TH' }}</p>
                   </v-avatar>
                 </v-btn>
               </v-sheet>

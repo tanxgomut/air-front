@@ -15,7 +15,7 @@ export const useFileUpload = () => {
         if (!files) return
 
         const validTypes = ['image/jpeg', 'image/png']
-        const maxSize = 1024 * 100000 // 500 KB
+        const maxSize = 1024 * 100000 // 1000 KB
 
         Array.from(files).forEach((file) => {
             if (!validTypes.includes(file.type)) {

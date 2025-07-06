@@ -14,10 +14,6 @@ import "vue3-carousel/dist/carousel.css";
 //import style
 import "@/assets/scss/style.scss";
 
-//i18
-// import { createI18n } from "vue-i18n";
-// import messages from "@/utils/locales/messages";
-
 // date picker
 import DateFnsAdapter from '@date-io/date-fns'
 import enUS from 'date-fns/locale/en-US'

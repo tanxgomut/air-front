@@ -21,5 +21,4 @@ const localePath = useLocalePath()
     <BuildAmazing />
     <BuildFeature />
     <Testimonials />
-    <!-- <StartProject /> -->
 </template>
