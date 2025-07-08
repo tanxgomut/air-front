@@ -84,7 +84,7 @@ const dark: ThemeDefinition = {
 };
 
 export default defineNuxtPlugin((nuxtApp) => {
-    const locale = nuxtApp.$i18n.locale
+    const locale = (nuxtApp.$i18n as any)?.locale || { value: 'th' }
     const colorMode = useColorMode()
     const vuetify = createVuetify({
         ssr: true,
