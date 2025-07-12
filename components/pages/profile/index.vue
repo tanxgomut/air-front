@@ -5,7 +5,7 @@ import {
     UserCircleIcon,
     BellIcon,
     ArticleIcon,
-    LockIcon,
+    AddressBookIcon
 } from "vue-tabler-icons";
 
 const router = useRouter()
@@ -50,7 +50,7 @@ watch(tab, (newTab) => {
                             class="d-none d-sm-block d-md-block  ">Account</span>
                     </v-tab>
                     <v-tab value="Security">
-                        <LockIcon class="mr-2" size="20" /><span class="d-none d-sm-block d-md-block ">Security</span>
+                        <AddressBookIcon class="mr-2" size="20" /><span class="d-none d-sm-block d-md-block ">Address Book</span>
                     </v-tab>
                 </v-tabs>
                 <v-card-text class="pa-sm-6 pa-3 pb-sm-6 pb-6">

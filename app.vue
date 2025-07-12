@@ -8,6 +8,7 @@ import AOS from "aos";
 import { Toaster } from 'vue-sonner'
 import { ChevronUpIcon } from "vue-tabler-icons";
 import ConfirmDialog from '@/components/shared/ConfirmDialog.vue'
+import SharedBottomAppBar from '@/components/shared/BottomAppBar.vue';
 
 usePageSeo('index')
 
@@ -29,9 +30,10 @@ onMounted(() => {
         <NuxtLayout>
           <Header />
           <NuxtPage />
-          <CookieConsent />
           <Footer />
         </NuxtLayout>
+        <SharedBottomAppBar/>
+        <CookieConsent />
         <ScrollTop />
       </v-main>
     </v-app>

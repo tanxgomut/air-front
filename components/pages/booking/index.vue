@@ -80,7 +80,7 @@ const onDateChange = (val: string) => {
     console.log('เลือกวันที่:', val)
 }
 
-const formatDateThai = (date: string | number | Date | null) => {
+const formatDateThai = (date: string | number | Date | any) => {
     return format(new Date(date), 'd MMMM yyyy', { locale: th })
 }
 
@@ -142,7 +142,7 @@ const scrollToBooking = () => {
             <v-container>
                 <div class="mb-sm-16 mb-8 pb-md-5">
                     <h2 ref="bookingSection"
-                        class="text-h3 text-md-h2 text-dark mb-sm-15 mb-7 text-sm-start text-center">
+                        class="text-sm-h3 text-md-h2 text-dark mb-sm-15 mb-7 text-sm-start text-center">
                         {{ t('จองคิวล้างแอร์กับทีมงานมืออาชีพ') }}
                     </h2>
 
@@ -164,12 +164,12 @@ const scrollToBooking = () => {
                                         <v-row>
                                             <v-col cols="4" lg="4" v-for="item in airType" :key="item.type">
                                                 <v-card @click="toggleSelect(item)" elevation="10" rounded="lg" :class="[
-                                                    'rounded-lg transition-all duration-300 overflow-hidden',
+                                                    'rounded-lg transition-all duration-300 overflow-hidden w-100 sm:h-[120px] md:h-[140px]',
                                                     item.selected ? 'border-2 border-primary' : 'border-2 !border-transparent'
                                                 ]">
 
                                                     <NuxtImg :src="item.image"
-                                                        class="w-100 h-[120px] md:h-[180px] object-cover" />
+                                                        class="w-100 h-100  overflow-hidden" />
                                                     <v-card-subtitle class="py-2 text-center">
                                                         <div>{{ t(item.label) }}</div>
                                                     </v-card-subtitle>

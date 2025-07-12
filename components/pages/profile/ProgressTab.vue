@@ -77,8 +77,8 @@ const searchValue = ref('');
     <div class="pa-0 pa-sm-0 pa-md-6">
         <!-- <h4 class="text-h6 mb-6 font-bold">In Progress</h4> -->
 
-        <v-sheet v-for="item in store" :key="item.id"
-            :class="'note-sheet rounded-xl border pa-8 mb-5 transition-all  bg-light' + item.color">
+        <v-sheet v-for="item in store" :key="item.id" elevation="10"
+            :class="'no-sheet rounded-xl border pa-8 mb-5 transition-all  '">
             <!-- Top Row: Name + Status -->
             <div class="flex items-start justify-between mb-4">
                 <div>

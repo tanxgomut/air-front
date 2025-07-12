@@ -12,7 +12,7 @@ import { ServicesData } from '@/_mockApis/demos/corporate';
                             <div class="d-flex justify-center mb-2">
                                 <NuxtImg :src="item.img" height="30" width="30" />
                             </div>
-                            <h4 class="text-h1 text-dark font-weight-bold mt-6 mb-2">{{ item.title }}</h4>
+                            <h4 class="text-h2 text-lg-h1 text-dark font-weight-bold mt-6 mb-2">{{ item.title }}</h4>
                             <p class="text-muted text-body-1 ">{{ item.desc }}</p>
                         </div>
                     </v-col>
