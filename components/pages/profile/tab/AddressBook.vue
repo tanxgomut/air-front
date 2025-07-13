@@ -4,7 +4,7 @@ import { PhotoPinIcon, HomeRibbonIcon } from 'vue-tabler-icons'
 import { useDisplay } from 'vuetify'
 import { useAddressBook } from '@/composables/useAddressbook'
 import type { Province, District, Subdistrict, Zipcode, AddressData } from '@/types/pages/addressData';
-import { closestIndexTo } from 'date-fns';
+const { $toast } = useNuxtApp()
 const { t } = useI18n()
 
 const drawer = ref(false)
@@ -20,7 +20,7 @@ const {
     provinceData,
     errors,
     submitAddressBook,
-    validate,
+    validAddressBook,
     resetForm
 } = useAddressBook()
 
@@ -153,6 +153,13 @@ const fetchAddressBook = async () => {
     addressBook.value = data
 }
 
+const onSubmitAddressBook = async () => {
+    const isValid = await validAddressBook()
+    if (!isValid) return
+    $toast.success(t('Address book saved successfully!'))
+    close()
+}
+
 </script>
 <template>
     <Teleport to="body">
@@ -164,12 +171,13 @@ const fetchAddressBook = async () => {
                 drawer ? (smAndDown ? 'translate-y-0' : 'translate-x-0') : (smAndDown ? 'translate-y-full' : 'translate-x-full')
             ]" style="z-index: 2000;">
 
-                <div class="flex items-center justify-between px-4 py-3 border-b">
-                    <h5 class="text-h5">เพิ่มสมุดที่อยู่</h5>
-                    <v-btn icon="mdi-close" size="small" @click="close"></v-btn>
+                <div class="flex items-center justify-start px-4 py-3 border-b">
+                    <v-btn icon="mdi-chevron-left" variant="text" @click="close"></v-btn>
+                    <h5 class="text-h5 ml-2">เพิ่มสมุดที่อยู่</h5>
+
                 </div>
                 <v-card elevation="0" class="flex-1 overflow-y-auto overflow-x-hidden">
-                    <v-form @submit.prevent="submitAddressBook" class="">
+                    <v-form @submit.prevent="onSubmitAddressBook" class="">
                         <v-row class="d-flex flex-column ga-4 pa-4 " dense>
                             <h6 class="text-h6 text-dark  ">{{ t('ข้อมูลที่อยู่') }}</h6>
                             <v-col cols="12">
@@ -202,17 +210,17 @@ const fetchAddressBook = async () => {
                                         <v-tabs v-model="tab" bg-color="transparent" grow class="theme-tab"
                                             min-height="50" height="50" color="primary">
                                             <v-tab value="province">
-                                                <span class="d-none d-sm-block d-md-block ">
+                                                <span class="d-block ">
                                                     เลือกจังหวัด</span>
                                             </v-tab>
                                             <v-tab value="district" :disabled="!provinceData.province?.id">
-                                                <span class="d-none d-sm-block d-md-block ">เขต/อำเภอ</span>
+                                                <span class="d-block ">เขต/อำเภอ</span>
                                             </v-tab>
                                             <v-tab value="subdistrict" :disabled="!provinceData.district?.id">
-                                                <span class="d-none d-sm-block d-md-block ">เลือกแขวง/ตำบล</span>
+                                                <span class="d-block ">เลือกแขวง/ตำบล</span>
                                             </v-tab>
                                             <v-tab value="zipcode" :disabled="!provinceData.subdistrict?.id">
-                                                <span class="d-none d-sm-block d-md-block  ">เลือกเขต</span>
+                                                <span class="d-block  ">เลือกเขต</span>
                                             </v-tab>
                                         </v-tabs>
                                         <v-window v-model="tab">
@@ -287,7 +295,7 @@ const fetchAddressBook = async () => {
 
                 <div class="flex justify-end gap-2 px-4 py-6 mt-auto">
                     <v-btn variant="text" color="error" @click="close()">ยกเลิก</v-btn>
-                    <v-btn color="primary" type="submit">บันทึก</v-btn>
+                    <v-btn color="primary" type="submit" @click.stop="onSubmitAddressBook">บันทึก</v-btn>
                 </div>
 
             </div>
@@ -309,12 +317,12 @@ const fetchAddressBook = async () => {
                             <v-col cols="12" v-for="address in addressBook" :key="address.id">
                                 <v-card elevation="0" class="border-b">
                                     <div class="flex px-2 py-4">
-                                        <div class="pa-2">
+                                        <div class="">
                                             <PhotoPinIcon size="30" class="text-accent mr-2" />
                                         </div>
                                         <div class="flex-1">
-                                            <div class="text-h5">{{ address.name }} <span
-                                                    class="text-body-2 text-muted pl-4">{{ address.tel }}</span></div>
+                                            <div class="text-h6">{{ address.name }} <span
+                                                    class="text-subtitle-1 text-muted pl-4">{{ address.tel }}</span></div>
                                             <div class="text-subtitle-1 mt-2">{{ address.address }}</div>
                                             <div class="text-subtitle-1 mt-2">{{ addressString(address.provinceData) }}
                                             </div>

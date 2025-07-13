@@ -19,10 +19,18 @@ export const useAddressBook = () => {
       .max(50, t('กรุณากรอกที่อยู่ไม่เกิน 50 ตัวอักษร')),
     selectedLocation: string().required(t('กรุณาเลือกประเภทที่อยู่')),
     provinceData: object({
-      province: object().required(),
-      district: object().required(),
-      subdistrict: object().required(),
-      zipcode: object().required(),
+      province: object()
+        .test('province-required', t('กรุณาเลือกจังหวัด'), v => !!v && !!v.id)
+        .required(),
+      district: object()
+        .test('district-required', t('กรุณาเลือกอำเภอ/เขต'), v => !!v && !!v.id)
+        .required(),
+      subdistrict: object()
+        .test('subdistrict-required', t('กรุณาเลือกตำบล/แขวง'), v => !!v && !!v.id)
+        .required(),
+      zipcode: object()
+        .test('zipcode-required', t('กรุณาเลือกรหัสไปรษณีย์'), v => !!v && !!v.id)
+        .required(),
     }).required(t('กรุณากรอกข้อมูลจังหวัด อำเภอ ตำบล แขวง และรหัสไปรษณีย์')),
   })
 
@@ -48,6 +56,8 @@ export const useAddressBook = () => {
   const { value: selectedLocation } = useField<string>('selectedLocation')
   const { value: provinceData } = useField<any>('provinceData')
 
+  const validAddressBook = handleSubmit(() => true, () => false)
+
   const submitAddressBook = handleSubmit((formData) => {
     console.log('📦 AddressBook Data:', formData)
   })
@@ -61,7 +71,7 @@ export const useAddressBook = () => {
     errors,
     meta,
     submitAddressBook,
-    validate,
+    validAddressBook,
     resetForm
   }
 }

@@ -31,7 +31,7 @@ onMounted(() => {
           <NuxtPage />
           <Footer />
         </NuxtLayout>
-        <SharedBottomAppBar/>
+        <SharedBottomAppBar />
         <CookieConsent />
         <ScrollTop />
       </v-main>

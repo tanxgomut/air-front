@@ -102,13 +102,7 @@ const toggleThemeLanguage = () => {
               </template>
             </v-list>
 
-            <div class="d-md-flex  d-none justify-end min-w-[250px]">
-              <div class="position-relative">
-
-              </div>
-              <!-----Login Button and Popup----->
-
-              <!-----Register Button and Popup----->
+            <div class="d-md-flex d-none justify-end min-w-[250px]">
               <v-sheet rounded="circle" class="cursor-pointer text-center ml-2 " elevation="0" @click="toggleTheme">
                 <v-btn icon :class="theme.global.name.value" class="" size="small" variant="text" color="primary">
                   <SunIcon v-if="theme.global.name.value == 'light'" :class="theme.global.name.value" height="22" />
