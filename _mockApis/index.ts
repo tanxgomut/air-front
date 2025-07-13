@@ -19,5 +19,6 @@ import './footer/ConferenceFooter';
 import './demos/corporate';
 // import './demos/nft';
 import './auth/register';
+import './pages/addressData';
 
 mock.onAny().passThrough();

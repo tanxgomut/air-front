@@ -5,7 +5,7 @@ const { t } = useI18n()
 const localePath = useLocalePath()
 import logo from '@/layouts/logo/WhiteLogoIcon.vue';
 
-const { name, tel, password, errors, submitRegister, validateRegister, resetForm } = useRegisterForm()
+const { name, tel, errors, submitRegister, validateRegister, resetForm } = useRegisterForm()
 
 const emit = defineEmits(['close', 'isLogin'])
 
@@ -86,7 +86,6 @@ const backLogin = () => {
         <div class="px-md-12 px-6 pt-md-15 pb-8">
             <!----Header---->
             <div class="text-center mb-6 ">
-                <logo />
                 <h4 class="text-h4 text-dark font-weight-bold mt-5 mb-sm-7 mb-4">{{ t('Register your account') }}
                 </h4>
             </div>
@@ -100,11 +99,6 @@ const backLogin = () => {
                 <div class="mb-1">
                     <v-text-field v-model="tel" :error-messages="errors.tel" variant="outlined" type="tel"
                         density="comfortable" :placeholder="t('phone')" color="primary" elevation="0"
-                        class="custom-placeholer-color" />
-                </div>
-                <div>
-                    <v-text-field v-model="password" :error-messages="errors.password" variant="outlined"
-                        type="password" density="comfortable" :placeholder="t('Password')" color="primary" elevation="0"
                         class="custom-placeholer-color" />
                 </div>
                 <div class="ml-n2 mt-n2">

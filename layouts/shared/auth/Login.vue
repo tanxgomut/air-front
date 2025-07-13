@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { useLoginForm } from '@/composables/useLoginForm'
 const { tel, errors, meta, submitLogin, validateLogin, resetForm } = useLoginForm()
-const { password: pswReset, errors: errReset } = useRegisterForm()
 const { t } = useI18n()
 const localePath = useLocalePath()
 const { $toast } = useNuxtApp()
 import { LockIcon, XIcon } from 'vue-tabler-icons'
-import logo from '@/layouts/logo/WhiteLogoIcon.vue'
 import RegisterLogin from './RegisterLogin.vue'
 
 
@@ -114,10 +112,6 @@ const stopCountdown = () => {
 
 
             <v-card class="px-md-12 px-6 pt-md-15 pb-8">
-                <div class="text-center ">
-                    <logo />
-
-                </div>
                 <div v-if="isPage == 'login'" class="">
                     <!----Header---->
                     <h4 class="text-h4 text-dark text-center font-weight-bold mt-5 mb-sm-7 mb-4">

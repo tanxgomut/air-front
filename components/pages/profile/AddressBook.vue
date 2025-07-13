@@ -1,3 +1,0 @@
-<template>
-    Address Book
-</template>

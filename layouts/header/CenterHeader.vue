@@ -3,7 +3,6 @@ import { useTheme } from 'vuetify'
 import Logo from "@/layouts/logo/logo.vue";
 import { Menu2Icon, SearchIcon } from "vue-tabler-icons";
 import Login from "@/layouts/shared/auth/Login.vue";
-import Register from "@/layouts/shared/auth/Register.vue";
 import sidebarItem from "@/_mockApis/header/Menu";
 import NavGroup from "./NavGroup/index.vue";
 import NavItem from "./NavItem/index.vue";
@@ -52,7 +51,7 @@ watch(() => colorMode.preference, (newPreference) => {
 const toggleTheme = () => {
   const newTheme = theme.global.current.value.dark ? 'light' : 'dark'
   theme.global.name.value = newTheme
-  colorMode.preference = newTheme 
+  colorMode.preference = newTheme
 }
 
 
@@ -64,7 +63,7 @@ const toggleThemeLanguage = () => {
 </script>
 
 <template>
-  <div class="header white-header mt-n95">
+  <div class="header white-header mt-n95 z-50">
     <!----sidebar menu drawer start----->
     <ClientOnly>
       <v-navigation-drawer color="white" class="drawer" v-model="drawer" temporary>

@@ -8,7 +8,6 @@ import AOS from "aos";
 import { Toaster } from 'vue-sonner'
 import { ChevronUpIcon } from "vue-tabler-icons";
 import ConfirmDialog from '@/components/shared/ConfirmDialog.vue'
-import SharedBottomAppBar from '@/components/shared/BottomAppBar.vue';
 
 usePageSeo('index')
 

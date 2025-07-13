@@ -12,7 +12,7 @@ const router = useRouter()
 const route = useRoute()
 
 const tab = ref('Progress') // default tab
-const validTabs = ['Progress', 'Record', 'Account', 'Security']
+const validTabs = ['Progress', 'Record', 'Account', 'AddressBook']
 
 onMounted(() => {
     const queryTab = route.query.tab as string
@@ -36,39 +36,41 @@ watch(tab, (newTab) => {
     <v-row class="justify-center">
         <v-col cols="12" md="12">
             <v-card elevation="0" class=" " rounded="md">
-                <v-tabs v-model="tab" bg-color="transparent" grow class="theme-tab" min-height="50" height="50"
-                    color="primary">
-                    <v-tab value="Progress">
-                        <BellIcon class="mr-2" size="20" /><span class="d-none d-sm-block d-md-block ">In
-                            Progress</span>
-                    </v-tab>
-                    <v-tab value="Record">
-                        <ArticleIcon class="mr-2" size="20" /><span class="d-none d-sm-block d-md-block ">Record</span>
-                    </v-tab>
-                    <v-tab value="Account">
-                        <UserCircleIcon class="mr-2" size="20" /> <span
-                            class="d-none d-sm-block d-md-block  ">Account</span>
-                    </v-tab>
-                    <v-tab value="Security">
-                        <AddressBookIcon class="mr-2" size="20" /><span class="d-none d-sm-block d-md-block ">Address Book</span>
-                    </v-tab>
-                </v-tabs>
-                <v-card-text class="pa-sm-6 pa-3 pb-sm-6 pb-6">
-                    <v-window v-model="tab">
-                        <v-window-item value="Progress">
-                            <PagesProfileProgressTab/>
-                        </v-window-item>
-                        <v-window-item value="Record">
-                            <PagesProfileRecordTab/>
-                        </v-window-item>
-                        <v-window-item value="Account">
-                            <PagesProfileAccountTab />
-                        </v-window-item>
-                        <v-window-item value="Security">
-                            <PagesProfileChangePasswordTab />
-                        </v-window-item>
-                    </v-window>
-                </v-card-text>
+                <div class="sticky top-[95px] z-30">
+                    <v-tabs v-model="tab" bg-color="transparent" grow class="theme-tab" min-height="50" height="50"
+                        color="primary">
+                        <v-tab value="Progress">
+                            <BellIcon class="mr-2" size="20" /><span class="d-none d-sm-block d-md-block ">In
+                                Progress</span>
+                        </v-tab>
+                        <v-tab value="Record">
+                            <ArticleIcon class="mr-2" size="20" /><span
+                                class="d-none d-sm-block d-md-block ">Record</span>
+                        </v-tab>
+                        <v-tab value="Account">
+                            <UserCircleIcon class="mr-2" size="20" /> <span
+                                class="d-none d-sm-block d-md-block  ">Account</span>
+                        </v-tab>
+                        <v-tab value="AddressBook">
+                            <AddressBookIcon class="mr-2" size="20" /><span
+                                class="d-none d-sm-block d-md-block ">Address Book</span>
+                        </v-tab>
+                    </v-tabs>
+                </div>
+                <v-window v-model="tab">
+                    <v-window-item value="Progress">
+                        <PagesProfileTabProgress />
+                    </v-window-item>
+                    <v-window-item value="Record">
+                        <PagesProfileTabRecord />
+                    </v-window-item>
+                    <v-window-item value="Account">
+                        <PagesProfileTabAccount />
+                    </v-window-item>
+                    <v-window-item value="AddressBook">
+                        <PagesProfileTabAddressBook />
+                    </v-window-item>
+                </v-window>
             </v-card>
         </v-col>
     </v-row>

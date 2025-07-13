@@ -31,7 +31,7 @@ const themecolors: ThemeDefinition = {
         secondary: '#49BEFF',
         info: '#539BFF',
         success: '#13DEB9',
-        accent: '#FFAB91',
+        accent: '#F893B5',
         warning: '#FFAE1F',
         error: '#D32F2F',
         lightprimary: '#ECF2FF',
