@@ -25,7 +25,7 @@ export const useAddressBook = () => {
       district: object()
         .test('district-required', t('กรุณาเลือกอำเภอ/เขต'), v => !!v && !!v.id)
         .required(),
-      subdistrict: object()
+      subdistrict: object() 
         .test('subdistrict-required', t('กรุณาเลือกตำบล/แขวง'), v => !!v && !!v.id)
         .required(),
       zipcode: object()

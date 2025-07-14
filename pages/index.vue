@@ -10,15 +10,23 @@ import Testimonials from '@/components/demos/corporate/Testimonials.vue';
 import StartProject from '@/components/demos/corporate/StartProject.vue';
 import FindRealEstate from '~/components/demos/corporate/FindRealEstate.vue';
 import PagesBooking from '@/components/pages/booking/index.vue'
+import ContactUs from '@/components/pages/contact/ContactUs.vue';
 const { t } = useI18n()
 const localePath = useLocalePath()
+import { onMounted, nextTick } from 'vue'
+import { useRoute } from 'vue-router'
+const route = useRoute()
+onMounted(async () => {
+
+})
 
 </script>
 <template>
-    <FindRealEstate/>
+    <FindRealEstate />
     <Services />
-    <PagesBooking />
-    <BuildAmazing />
-    <BuildFeature />
+    <!-- <PagesBooking /> -->
+    <!-- <BuildAmazing /> -->
+    <!-- <BuildFeature /> -->
+    <ContactUs />
     <Testimonials />
 </template>

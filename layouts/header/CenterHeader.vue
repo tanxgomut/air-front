@@ -19,6 +19,7 @@ import {
 const { locale } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
 const localePath = useLocalePath()
+const route = useRoute()
 const router = useRouter()
 const colorMode = useColorMode()
 const theme = useTheme()
@@ -28,6 +29,7 @@ const th = ref({ title: 'Thai', subtext: 'TH', value: 'th', avatar: '/images/it/
 
 
 const drawer = ref(false);
+const contactSection = ref<HTMLElement | null>(null)
 
 onBeforeMount(() => {
   window.addEventListener("scroll", handleScroll);
@@ -60,29 +62,48 @@ const toggleThemeLanguage = () => {
   const newPath = switchLocalePath(newLocale)
   if (newPath) router.push(newPath)
 }
+
+const goToContact = () => {
+  if (route.path == '/') {
+    scrollToContact()
+  } else {
+    router.push({ path: '/' })
+    setTimeout(() => {
+      scrollToContact()
+    }, 300)
+  }
+}
+
+const scrollToContact = () => {
+  const el = document.getElementById('contactSection')
+  if (el) {
+    const offsetTop = el.getBoundingClientRect().top + window.scrollY - 100
+    window.scrollTo({ top: offsetTop, behavior: 'smooth' })
+  }
+}
 </script>
 
 <template>
   <div class="header white-header mt-n95 z-50">
     <!----sidebar menu drawer start----->
     <ClientOnly>
-      <v-navigation-drawer color="white" class="drawer" v-model="drawer" temporary>
+      <!-- <v-navigation-drawer color="white" class="drawer" v-model="drawer" temporary>
         <perfect-scrollbar class="scrollnavbar">
-          <!-- <MobileNavigation /> -->
+        
           <v-list class="menu text-capitalizew-100">
-            <!---Menu Loop -->
+            
             <template v-for="(item, i) in sidebarItem">
-              <!---Item Sub Header -->
+             
               <NavGroup :item="item" v-if="item.header" :key="item.title" />
-              <!---If Has Child -->
+              
               <MobileNavCollapse class="" :item="item" :level="0" v-else-if="item.children" />
-              <!---Single Item-->
+              
               <NavItem :item="item" v-else class="" />
-              <!---End Single Item-->
+              
             </template>
-          </v-list>
-        </perfect-scrollbar>
-      </v-navigation-drawer>
+</v-list>
+</perfect-scrollbar>
+</v-navigation-drawer> -->
 
       <!----sidebar menu drawer end----->
       <v-app-bar flat class="header-card bg-surface py-4" :class="stickyHeader ? 'sticky' : ''">
@@ -91,15 +112,9 @@ const toggleThemeLanguage = () => {
             <Logo />
             <v-list class="d-md-flex d-none flex-wrap py-0  menu text-capitalize justify-center w-100">
               <!---Menu Loop -->
-              <template v-for="(item, i) in sidebarItem">
-                <!---Item Sub Header -->
-                <NavGroup :item="item" v-if="item.header" :key="item.title" />
-                <!---If Has Child -->
-                <NavCollapse class="" :item="item" :level="0" v-else-if="item.children" />
-                <!---Single Item-->
-                <NavItem :item="item" v-else class="" />
-                <!---End Single Item-->
-              </template>
+
+              <v-btn to="/booking" variant="text" color="primary" class="" size="small">booking</v-btn>
+              <v-btn @click="goToContact()" variant="text" color="primary" class="" size="small">contact</v-btn>
             </v-list>
 
             <div class="d-md-flex d-none justify-end min-w-[250px]">
