@@ -196,7 +196,7 @@ const scrollToBooking = () => {
             <v-container>
                 <div class="mb-sm-16 mb-8 pb-md-5">
                     <h2 ref="bookingSection" class="text-h4 text-md-h3 text-dark mb-sm-10 mb-7 mt-5">
-                        {{ t('จองคิวล้างแอร์กับทีมงานมืออาชีพ') }} {{ isLogin }} {{ 'jsjcj' }}
+                        {{ t('จองคิวล้างแอร์กับทีมงานมืออาชีพ') }}
                     </h2>
                     <Login v-model="isOpenLogin" :is-button="false" />
                     <v-form v-if="stepBooking === 1" key="step1" @submit.prevent="submitBooking(2)" class="">

@@ -2,10 +2,13 @@
 import { useRoute, useRouter } from 'vue-router'
 import { ref, computed } from 'vue'
 import { useDisplay } from 'vuetify'
+import Login from "@/layouts/shared/auth/Login.vue";
 
 const { smAndDown } = useDisplay()
 const router = useRouter()
 const route = useRoute()
+const isLogin = useCookie('isLogin')
+const isOpenLogin = ref<boolean>(false)
 
 const tabs = [
     { to: '/', label: 'main', icon: 'mdi-home-circle' },
@@ -18,7 +21,6 @@ const isActive = (tab: { to: string, label: string }) => {
         return route.path === '/' && route.hash === '#contact'
     }
     if (tab.label === 'main') {
-
         return route.path === '/' && !route.hash
     }
     return route.path === tab.to
@@ -35,13 +37,19 @@ const gotoPage = async (path: string, label: string) => {
     } else if (route.path == '/' && label == 'main') {
         window.scrollTo({ top: 0, behavior: 'smooth' })
         router.push(path)
+    } else if (label === 'profile') {
+        if (isLogin.value) {
+            router.push(path)
+        } else {
+            isOpenLogin.value = true
+        }
+
     } else {
         if (route.path !== path) {
             router.push(path)
         }
     }
 }
-
 
 
 const scrollToContact = () => {
@@ -54,6 +62,7 @@ const scrollToContact = () => {
 </script>
 
 <template>
+    <Login v-model="isOpenLogin" :is-button="false" />
     <v-bottom-navigation v-if="smAndDown" elevation="0" grow class="!h-[80px]">
         <button v-for="tab in tabs" :key="tab.to" @click="gotoPage(tab.to, tab.label)"
             class="flex flex-col items-center justify-center w-full pb-6 transition-all rounded-md"

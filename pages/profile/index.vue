@@ -1,7 +1,8 @@
 <script setup lang="ts">
 definePageMeta({
-  layout: "blank",
-});
+  layout: 'blank',
+  middleware: ['auth']
+})
 </script>
 <template>
   <div class="mt-10 pt-md-16 pt-5 ">

@@ -13,6 +13,7 @@ const props = withDefaults(defineProps<{
     isButton: true
 })
 
+const router = useRouter()
 const LoginDialog = defineModel()
 const isLogin = useCookie('isLogin', {
     maxAge: 60 * 60 * 24 * 30 // 30 วัน
@@ -34,8 +35,19 @@ watch(LoginDialog, (val) => {
         stopCountdown()
         otp.value = ''
         otpError.value = ''
+    }else{
+        isPage.value = 'login'
     }
 })
+
+const onButtonClick = () => {
+    if (isLogin.value) {
+        router.push({ path: '/booking' })
+    } else {
+        LoginDialog.value = true;
+        isPage.value = 'login'
+    }
+}
 
 const onLogin = async () => {
     try {
@@ -108,10 +120,14 @@ const stopCountdown = () => {
 
 </script>
 <template>
-    <v-btn v-if="isButton" color="primary" variant="outlined" class="rounded-md d-md-flex d-none white-outline ms-4"
-        @click="LoginDialog = true; isPage = 'login'">
-        <NuxtImg src="/images/icon/icon-login-user.png" class="me-2" alt="Sign in" />{{ t('Sign in') }}
+    <v-btn v-if="isButton" @click="onButtonClick()" variant="flat" color="primary"
+        class="px-9 ml-2 text-sm-body-2 text-md-body-1">
+        {{ t('จองคิว') }}
     </v-btn>
+    <!-- <v-btn v-if="isButton" color="primary" variant="outlined" class="rounded-md d-md-flex d-none white-outline ms-4"
+        @click="LoginDialog = true; isPage = 'login'">
+        <NuxtImg src="/images/icon/icon-login-user.png" class="me-2" alt="Sign in" />{{ t('เข้าสู่ระบบ') }}
+    </v-btn> -->
     <!------Login Dialog------>
     <v-dialog v-model="LoginDialog" max-width="450">
         <RegisterLogin v-if="isPage == 'register'" @close="onClose" @isLogin="isPage = 'login'" />
@@ -122,7 +138,7 @@ const stopCountdown = () => {
                 <div v-if="isPage == 'login'" class="">
                     <!----Header---->
                     <h4 class="text-h4 text-dark text-center font-weight-bold mt-5 mb-sm-7 mb-4">
-                        {{ t('Sign in to your account') }} 
+                        {{ t('Sign in to your account') }}
                     </h4>
                     <!---------->
                     <!----Form---->

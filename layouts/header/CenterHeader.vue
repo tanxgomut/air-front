@@ -116,9 +116,6 @@ const scrollToContact = () => {
             </v-list>
 
             <div class="d-md-flex d-none justify-end min-w-[250px]">
-              <v-btn variant="flat" color="primary" to="/booking" class="px-9 ml-2 text-sm-body-2 text-md-body-1">
-                จองคิวล้างแอร์เลย
-              </v-btn>
               <v-sheet rounded="circle" class="cursor-pointer text-center ml-2 " elevation="0" @click="toggleTheme">
                 <v-btn icon :class="theme.global.name.value" class="" size="small" variant="text" color="primary">
                   <SunIcon v-if="theme.global.name.value == 'light'" :class="theme.global.name.value" height="22" />
@@ -136,6 +133,7 @@ const scrollToContact = () => {
               </v-sheet>
 
               <Login v-if="!isLogin" />
+
               <NuxtLink v-if="isLogin" :to="localePath('/profile')">
                 <v-sheet rounded="circle" class="cursor-pointer text-center ml-2" elevation="0">
                   <v-btn icon variant="text" color="primary" class="" size="small">
@@ -144,14 +142,42 @@ const scrollToContact = () => {
                 </v-sheet>
               </NuxtLink>
             </div>
-            <v-btn variant="flat" color="primary" size="small" to="/booking"
+            <!-- <v-btn variant="flat" color="primary" size="small" to="/booking"
               class="d-md-none d-flex justify-end ml-auto px-6 py-4  text-sm-body-2 text-md-body-1">
-              จองคิวล้างแอร์เลย
-            </v-btn>
-
-            <Menu2Icon class="d-md-none d-flex drawer-icon no-effect ml-2 mr-0" @click.stop="drawer = !drawer"
+              จองคิว
+            </v-btn> -->
+            <div class="ml-auto">
+              <Login />
+            </div>
+            <!-- <Menu2Icon class="d-md-none d-flex drawer-icon no-effect ml-2 mr-0" @click.stop="drawer = !drawer"
               size="30">
-            </Menu2Icon>
+            </Menu2Icon> -->
+            <v-menu elevation="0">
+              <template v-slot:activator="{ props }">
+                <v-btn icon="mdi-dots-vertical" variant="text" v-bind="props"></v-btn>
+              </template>
+
+              <v-list elevation="0">
+                <v-list-item elevation="0">
+                  <v-sheet rounded="circle" class="cursor-pointer text-center " elevation="0"
+                    @click="toggleThemeLanguage">
+                    <v-btn icon variant="text" color="primary" class="" size="small">
+                      <v-avatar size="22">
+                        <p class="text-primary text-subtitle-1">{{ locale === 'en' ? 'EN' : 'TH' }}</p>
+                      </v-avatar>
+                    </v-btn>
+                  </v-sheet>
+                </v-list-item>
+                <v-list-item elevation="0">
+                  <v-sheet rounded="circle" class="cursor-pointer text-center  " elevation="0" @click="toggleTheme">
+                    <v-btn icon :class="theme.global.name.value" class="" size="small" variant="text" color="primary">
+                      <SunIcon v-if="theme.global.name.value == 'light'" :class="theme.global.name.value" height="22" />
+                      <MoonIcon v-if="theme.global.name.value == 'dark'" :class="theme.global.name.value" height="22" />
+                    </v-btn>
+                  </v-sheet>
+                </v-list-item>
+              </v-list>
+            </v-menu>
           </v-toolbar>
         </v-container>
       </v-app-bar>
