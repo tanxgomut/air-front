@@ -85,24 +85,6 @@ const scrollToContact = () => {
   <div class="header white-header mt-n95 z-50">
     <!----sidebar menu drawer start----->
     <ClientOnly>
-      <!-- <v-navigation-drawer color="white" class="drawer" v-model="drawer" temporary>
-        <perfect-scrollbar class="scrollnavbar">
-        
-          <v-list class="menu text-capitalizew-100">
-            
-            <template v-for="(item, i) in sidebarItem">
-             
-              <NavGroup :item="item" v-if="item.header" :key="item.title" />
-              
-              <MobileNavCollapse class="" :item="item" :level="0" v-else-if="item.children" />
-              
-              <NavItem :item="item" v-else class="" />
-              
-            </template>
-</v-list>
-</perfect-scrollbar>
-</v-navigation-drawer> -->
-
       <!----sidebar menu drawer end----->
       <v-app-bar flat class="header-card bg-surface py-4" :class="stickyHeader ? 'sticky' : ''">
         <v-container class="py-0">
