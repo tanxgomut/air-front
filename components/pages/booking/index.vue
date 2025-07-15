@@ -10,6 +10,8 @@ import { th } from 'date-fns/locale'
 import { useBookingForm } from '@/composables/useBookingForm'
 import { useFileUpload } from '@/composables/useFileUpload'
 import qrCode from '/images/qr-code/qrcode.png'
+import Login from "@/layouts/shared/auth/Login.vue";
+
 const {
     name,
     tel,
@@ -26,7 +28,7 @@ const {
     submitBookingAir,
     validBookingAir,
     resetBooking
-} = useBookingForm(airTypeItem.airTypeItem)
+} = useBookingForm()
 
 
 const {
@@ -38,8 +40,11 @@ const {
     clearAll
 } = useFileUpload()
 
-const dialog = ref<boolean>(false)
+const isLogin = useCookie('isLogin')
+const isOpenLogin = ref<boolean>(false)
 
+const dialog = ref<boolean>(false)
+const selectAir = ref()
 const minDate = format(subDays(new Date(), 1), 'yyyy-MM-dd')
 const options = [
     { label: t('home'), value: 'home' },
@@ -54,27 +59,39 @@ const options = [
 const bookingSection = ref<HTMLElement | null>(null)
 const stepBooking = ref<number>(1)
 
+onMounted(() => {
+
+})
+
 watch(stepBooking, async () => {
     await nextTick()
     AOS.refresh()
+})
+
+watch(isLogin, async (val) => {
+    if (!val) {
+        stepBooking.value = 1
+        resetBooking()
+        scrollToBooking()
+    }
 })
 
 const selectLocation = (value: string) => {
     selectedLocation.value = value
 }
 
-const toggleSelect = (item: any) => {
-    item.selected = !item.selected
-    if (!item.selected) item.sum = 0
-}
+// const toggleSelect = (item: any) => {
+//     item.selected = !item.selected
+//     if (!item.selected) item.sum = 0
+// }
 
-const increase = (item: any) => {
-    item.sum++
-}
+// const increase = (item: any) => {
+//     item.sum++
+// }
 
-const decrease = (item: any) => {
-    if (item.sum > 0) item.sum--
-}
+// const decrease = (item: any) => {
+//     if (item.sum > 0) item.sum--
+// }
 
 const onDateChange = (val: string) => {
     console.log('เลือกวันที่:', val)
@@ -98,11 +115,47 @@ const saveBooking = () => {
 const submitBooking = (tab: number) => {
     validBookingAir().then((isValid) => {
         if (isValid) {
-            stepBooking.value = tab
-            scrollToBooking()
+            if (isLogin.value) {
+                stepBooking.value = tab
+                scrollToBooking()
+
+            } else {
+                isOpenLogin.value = true
+            }
         }
     })
 }
+// Function to find the selected item in airSelect
+const findSelectedItem = (type: string) => {
+    return airType.value.find((item) => item.type === type)
+}
+
+const toggleSelect = (item: any) => {
+    const selectedItem = findSelectedItem(item.type)
+    if (selectedItem) {
+        selectedItem.selected = !selectedItem.selected
+        if (!selectedItem.selected) {
+            selectedItem.sum = 0
+        }
+    } else {
+        airType.value.push({ ...item, selected: true, sum: 1 })
+    }
+    console.log('Selected Air Types:', airType.value);
+
+}
+
+const increase = (item: any) => {
+    const selectedItem = findSelectedItem(item.type)
+    if (selectedItem) selectedItem.sum++
+}
+
+const decrease = (item: any) => {
+    const selectedItem = findSelectedItem(item.type)
+    if (selectedItem && selectedItem.sum > 0) selectedItem.sum--
+}
+//
+
+
 
 const fileInput = ref<HTMLInputElement | null>(null)
 const slipsInput = ref<HTMLInputElement | null>(null)
@@ -134,6 +187,7 @@ const scrollToBooking = () => {
 
 
 
+
 </script>
 
 <template>
@@ -141,11 +195,10 @@ const scrollToBooking = () => {
         <div class="border-bottom">
             <v-container>
                 <div class="mb-sm-16 mb-8 pb-md-5">
-                    <h2 ref="bookingSection"
-                        class="text-sm-h3 text-md-h2 text-dark mb-sm-15 mb-7 text-sm-start text-center">
-                        {{ t('จองคิวล้างแอร์กับทีมงานมืออาชีพ') }}
+                    <h2 ref="bookingSection" class="text-h4 text-md-h3 text-dark mb-sm-10 mb-7 mt-5">
+                        {{ t('จองคิวล้างแอร์กับทีมงานมืออาชีพ') }} {{ isLogin }} {{ 'jsjcj' }}
                     </h2>
-
+                    <Login v-model="isOpenLogin" :is-button="false" />
                     <v-form v-if="stepBooking === 1" key="step1" @submit.prevent="submitBooking(2)" class="">
                         <v-row>
                             <v-col cols="12" md="8" lg="8" class="">
@@ -161,15 +214,14 @@ const scrollToBooking = () => {
 
                                     <h6 class="text-h6 text-dark  ">{{ t('เลือกประเภทแอร์') }}</h6>
                                     <div>
-                                        <v-row>
+                                        <!-- <v-row>
                                             <v-col cols="4" lg="4" v-for="item in airType" :key="item.type">
                                                 <v-card @click="toggleSelect(item)" elevation="10" rounded="lg" :class="[
                                                     'rounded-lg transition-all duration-300 overflow-hidden w-100 sm:h-[120px] md:h-[140px]',
                                                     item.selected ? 'border-2 border-primary' : 'border-2 !border-transparent'
                                                 ]">
 
-                                                    <NuxtImg :src="item.image"
-                                                        class="w-100 h-100  overflow-hidden" />
+                                                    <NuxtImg :src="item.image" class="w-100 h-100  overflow-hidden" />
                                                     <v-card-subtitle class="py-2 text-center">
                                                         <div>{{ t(item.label) }}</div>
                                                     </v-card-subtitle>
@@ -183,7 +235,35 @@ const scrollToBooking = () => {
                                                         class="" rounded="full" :disabled="!item.selected"></v-btn>
                                                 </div>
                                             </v-col>
+                                        </v-row> -->
+                                        <v-row>
+                                            <v-col cols="6" lg="4" md="4" sm="4" v-for="item in airTypeItem.airTypeItem"
+                                                :key="item.type">
+                                                <v-card @click="toggleSelect(item)" elevation="10" rounded="lg" :class="[
+                                                    'rounded-lg transition-all duration-300 overflow-hidden  cursor-pointer',
+                                                    findSelectedItem(item.type)?.selected ? 'border-2 border-primary' : 'border-2 !border-transparent',
+                                                ]">
+                                                    <NuxtImg :src="item.image"
+                                                        class="sm:h-[120px] md:h-[140px] mx-auto overflow-hidden" />
+                                                    <v-card-subtitle class="text-h6 text-dark text-center">
+                                                        {{ t(item.label) }}
+                                                    </v-card-subtitle>
+                                                </v-card>
+
+                                                <div class="d-flex flex-nowrap my-2">
+                                                    <v-btn @click.stop="decrease(item)" icon="mdi-minus" size="x-small"
+                                                        rounded="full"
+                                                        :disabled="!findSelectedItem(item.type)?.selected" />
+                                                    <div class="w-100 align-self-center text-center">
+                                                        {{ findSelectedItem(item.type)?.sum || 0 }}
+                                                    </div>
+                                                    <v-btn @click.stop="increase(item)" icon="mdi-plus" size="x-small"
+                                                        rounded="full"
+                                                        :disabled="!findSelectedItem(item.type)?.selected" />
+                                                </div>
+                                            </v-col>
                                         </v-row>
+
                                         <div v-if="meta.touched" class="text-[12px] text-error !px-[16px] !pt-[6px] ">{{
                                             errors.airType }}</div>
                                     </div>
@@ -363,11 +443,10 @@ const scrollToBooking = () => {
                                                 <v-card-title><v-icon class="mr-2" color="dark">mdi
                                                         mdi-air-conditioner
                                                     </v-icon>{{ t('ประเภทแอร์ และ จำนวน') }}</v-card-title>
-                                                <div v-for="air in airType">
+                                                <div v-for="air in airType" :key="air.type">
                                                     <div v-if="air.selected" class="text-h3 text-sm-h3">{{ t(air.label)
                                                     }} <span>{{ air.sum }}</span> ตัว</div>
                                                 </div>
-                                                <!-- <div class="text-h2 text-sm-h3">แอร์แขวน <span>3</span> ตัว</div> -->
                                             </v-col>
                                             <v-col cols="12" sm="6" md="6" lg="6" class=" text-end">
                                                 <v-card-title>{{ t('ราคา') }}</v-card-title>

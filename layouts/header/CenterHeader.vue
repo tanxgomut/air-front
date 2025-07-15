@@ -23,7 +23,7 @@ const route = useRoute()
 const router = useRouter()
 const colorMode = useColorMode()
 const theme = useTheme()
-
+const isLogin = useCookie('isLogin')
 const en = ref({ title: 'English', subtext: 'UK', value: 'en', avatar: '/images/it/mobile.png' })
 const th = ref({ title: 'Thai', subtext: 'TH', value: 'th', avatar: '/images/it/project.png' })
 
@@ -68,9 +68,7 @@ const goToContact = () => {
     scrollToContact()
   } else {
     router.push({ path: '/' })
-    setTimeout(() => {
-      scrollToContact()
-    }, 300)
+    setTimeout(() => { scrollToContact() }, 300)
   }
 }
 
@@ -118,6 +116,9 @@ const scrollToContact = () => {
             </v-list>
 
             <div class="d-md-flex d-none justify-end min-w-[250px]">
+              <v-btn variant="flat" color="primary" to="/booking" class="px-9 ml-2 text-sm-body-2 text-md-body-1">
+                จองคิวล้างแอร์เลย
+              </v-btn>
               <v-sheet rounded="circle" class="cursor-pointer text-center ml-2 " elevation="0" @click="toggleTheme">
                 <v-btn icon :class="theme.global.name.value" class="" size="small" variant="text" color="primary">
                   <SunIcon v-if="theme.global.name.value == 'light'" :class="theme.global.name.value" height="22" />
@@ -133,17 +134,22 @@ const scrollToContact = () => {
                   </v-avatar>
                 </v-btn>
               </v-sheet>
-              <Login />
-              <NuxtLink :to="localePath('/profile')">
+
+              <Login v-if="!isLogin" />
+              <NuxtLink v-if="isLogin" :to="localePath('/profile')">
                 <v-sheet rounded="circle" class="cursor-pointer text-center ml-2" elevation="0">
                   <v-btn icon variant="text" color="primary" class="" size="small">
                     <UserCircleIcon class="" size="30" />
                   </v-btn>
                 </v-sheet>
               </NuxtLink>
-
             </div>
-            <Menu2Icon class="d-md-none d-flex drawer-icon no-effect ml-auto mr-0" @click.stop="drawer = !drawer"
+            <v-btn variant="flat" color="primary" size="small" to="/booking"
+              class="d-md-none d-flex justify-end ml-auto px-6 py-4  text-sm-body-2 text-md-body-1">
+              จองคิวล้างแอร์เลย
+            </v-btn>
+
+            <Menu2Icon class="d-md-none d-flex drawer-icon no-effect ml-2 mr-0" @click.stop="drawer = !drawer"
               size="30">
             </Menu2Icon>
           </v-toolbar>

@@ -27,9 +27,9 @@ const reviewstar = ref(5);
             นัดวันสะดวกได้ทันที ครอบคลุมพื้นที่กรุงเทพฯ และปริมณฑล
           </p>
 
-          <v-btn variant="flat" color="primary" size="large" class="px-9 text-sm-body-2 text-md-body-1">
+          <!-- <v-btn variant="flat" color="primary" size="large" class="px-9 text-sm-body-2 text-md-body-1">
             จองคิวล้างแอร์เลย
-          </v-btn>
+          </v-btn> -->
         </v-col>
       </v-row>
     </v-container>

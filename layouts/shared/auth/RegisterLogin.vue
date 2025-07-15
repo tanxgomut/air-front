@@ -8,7 +8,9 @@ import logo from '@/layouts/logo/WhiteLogoIcon.vue';
 const { name, tel, errors, submitRegister, validateRegister, resetForm } = useRegisterForm()
 
 const emit = defineEmits(['close', 'isLogin'])
-
+const isLogin = useCookie('isLogin', {
+    maxAge: 60 * 60 * 24 * 30 // 30 วัน
+})
 const RegisterDialog = ref(false);
 const otp = ref('')
 const isError = ref<boolean>(true)
@@ -67,6 +69,7 @@ const verifyOtp = async () => {
         const data = await submitRegister()
         console.log('📦 รับค่ากลับ:', data)
         $toast.success('สมัครบัญชีสำเร็จ !')
+        isLogin.value = 'login'
         emit('close')
     } catch (err: any) {
         console.error('❌ สมัครไม่สำเร็จ:', err)

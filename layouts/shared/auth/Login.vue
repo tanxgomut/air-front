@@ -7,9 +7,17 @@ const { $toast } = useNuxtApp()
 import { LockIcon, XIcon } from 'vue-tabler-icons'
 import RegisterLogin from './RegisterLogin.vue'
 
+const props = withDefaults(defineProps<{
+    isButton?: boolean
+}>(), {
+    isButton: true
+})
 
-const LoginDialog = ref(false)
-const isPage = ref<'login' | 'register' | 'forgot' | 'verifyLogin' | 'resetPassword' | ''>('')
+const LoginDialog = defineModel()
+const isLogin = useCookie('isLogin', {
+    maxAge: 60 * 60 * 24 * 30 // 30 วัน
+})
+const isPage = ref<'login' | 'register' | 'forgot' | 'verifyLogin' | 'resetPassword' | ''>('login')
 
 // ✅ OTP & Countdown
 const otp = ref('')
@@ -61,8 +69,7 @@ const verifyLoginOtp = async () => {
     stopCountdown()
     $toast.success('Login successful!')
     LoginDialog.value = false
-
-
+    isLogin.value = 'login'
 }
 
 
@@ -101,7 +108,7 @@ const stopCountdown = () => {
 
 </script>
 <template>
-    <v-btn color="primary" variant="outlined" class="rounded-md d-md-flex d-none white-outline ms-4"
+    <v-btn v-if="isButton" color="primary" variant="outlined" class="rounded-md d-md-flex d-none white-outline ms-4"
         @click="LoginDialog = true; isPage = 'login'">
         <NuxtImg src="/images/icon/icon-login-user.png" class="me-2" alt="Sign in" />{{ t('Sign in') }}
     </v-btn>
@@ -115,7 +122,7 @@ const stopCountdown = () => {
                 <div v-if="isPage == 'login'" class="">
                     <!----Header---->
                     <h4 class="text-h4 text-dark text-center font-weight-bold mt-5 mb-sm-7 mb-4">
-                        {{ t('Sign in to your account') }}
+                        {{ t('Sign in to your account') }} 
                     </h4>
                     <!---------->
                     <!----Form---->

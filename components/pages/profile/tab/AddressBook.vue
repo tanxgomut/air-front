@@ -3,9 +3,13 @@ import { ref, watch, computed } from 'vue'
 import { PhotoPinIcon, HomeRibbonIcon } from 'vue-tabler-icons'
 import { useDisplay } from 'vuetify'
 import { useAddressBook } from '@/composables/useAddressbook'
+import { useConfirmDialog } from "@/composables/useConfirmDialog";
+import type { alertItem } from '@/types/dialog/alert'
+const { showDialog } = useConfirmDialog()
 import type { Province, District, Subdistrict, Zipcode, AddressData } from '@/types/pages/addressData';
 const { $toast } = useNuxtApp()
 const { t } = useI18n()
+
 
 const drawer = ref(false)
 const menu = ref(false)
@@ -156,9 +160,50 @@ const fetchAddressBook = async () => {
 const onSubmitAddressBook = async () => {
     const isValid = await validAddressBook()
     if (!isValid) return
+    editAddressBookId.value = null
     $toast.success(t('Address book saved successfully!'))
     close()
+
 }
+
+// edit address book entry
+const editAddressBookId = ref<number | null>(null)
+const editAddressBook = async (id: number) => {
+    const ad = addressBook.value.find(a => a.id === id)
+    if (address) {
+        editAddressBookId.value = id
+        name.value = ad.name
+        tel.value = ad.tel
+        address.value = ad.address
+        selectedLocation.value = ad.selectedLocation
+        provinceData.value = {
+            province: ad.provinceData.province,
+            district: ad.provinceData.district,
+            subdistrict: ad.provinceData.subdistrict,
+            zipcode: ad.provinceData.zipcode
+        }
+        drawer.value = true
+    }
+}
+
+// dailog for delete confirmation
+const alertData = ref<alertItem>()
+const onDelete = async () => {
+    alertData.value = {
+        title: t('ยืนยันการลบ ?'),
+        message: 'ต้องการลบที่อยู่นี้? หากลบคุณจะไม่สามารถกู้คืนได้',
+        textConfirm: 'ยืนยันการลบ',
+        textCancel: 'ยกเลิก',
+    }
+    const confirmed = await showDialog(alertData.value!)
+    if (confirmed) {
+        close()
+
+    } else {
+        console.log('!confirmed');
+    }
+}
+
 
 </script>
 <template>
@@ -169,7 +214,7 @@ const onSubmitAddressBook = async () => {
                 'drawer-bg fixed shadow-lg bg-auto transition-transform duration-300 flex flex-col',
                 smAndDown ? 'top-0 left-0 w-full h-full' : 'top-0 right-0 h-full w-[600px]',
                 drawer ? (smAndDown ? 'translate-y-0' : 'translate-x-0') : (smAndDown ? 'translate-y-full' : 'translate-x-full')
-            ]" style="z-index: 2000;">
+            ]" style="z-index: 1009;">
 
                 <div class="flex items-center justify-start px-4 py-3 border-b">
                     <v-btn icon="mdi-chevron-left" variant="text" @click="close"></v-btn>
@@ -291,6 +336,11 @@ const onSubmitAddressBook = async () => {
                             </v-col>
                         </v-row>
                     </v-form>
+                    <div class="px-4 py-2">
+                        <v-btn v-if="editAddressBookId" @click.stop="onDelete" prepend-icon="mdi-delete-outline"
+                            variant="outlined" color="accent" class="w-100">ลบที่อยู่</v-btn>
+                    </div>
+
                 </v-card>
 
                 <div class="flex justify-end gap-2 px-4 py-6 mt-auto">
@@ -322,7 +372,8 @@ const onSubmitAddressBook = async () => {
                                         </div>
                                         <div class="flex-1">
                                             <div class="text-h6">{{ address.name }} <span
-                                                    class="text-subtitle-1 text-muted pl-4">{{ address.tel }}</span></div>
+                                                    class="text-subtitle-1 text-muted pl-4">{{ address.tel }}</span>
+                                            </div>
                                             <div class="text-subtitle-1 mt-2">{{ address.address }}</div>
                                             <div class="text-subtitle-1 mt-2">{{ addressString(address.provinceData) }}
                                             </div>
@@ -330,7 +381,8 @@ const onSubmitAddressBook = async () => {
                                                 {{ address.selectedLocation }}
                                             </v-chip>
                                         </div>
-                                        <v-btn color="secondary" variant="text" @click.stop="">
+                                        <v-btn color="secondary" variant="text"
+                                            @click.stop="editAddressBook(address.id)">
                                             แก้ไข
                                         </v-btn>
                                     </div>

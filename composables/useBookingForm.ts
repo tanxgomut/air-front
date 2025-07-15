@@ -3,12 +3,13 @@ import { useForm, useField } from 'vee-validate'
 import airTypedefault from '@/_mockApis/pages/booking';
 
 
-export const useBookingForm = (airTypeItem: any[]) => {
+export const useBookingForm = () => {
   const { t } = useI18n()
 
-  const airType = ref<any[]>([...airTypeItem])
+  const airType = ref<any[]>([])
   const slips = ref<{ file: File; preview: string } | null>(null)
   const imagesBooking = ref<{ file: File; preview: string }[]>([])
+console.log(airType.value, 'airType.value');
 
   const schema = object({
     name: string().required(t('กรุณากรอกชื่อ')),
@@ -63,8 +64,6 @@ export const useBookingForm = (airTypeItem: any[]) => {
   const resetBooking = () => {
     imagesBooking.value = []
     airType.value = airTypedefault.airTypedefault
-    console.log(airTypedefault.airTypedefault);
-    
     resetForm()
   }
 
@@ -76,7 +75,6 @@ export const useBookingForm = (airTypeItem: any[]) => {
       slips: slips.value,
       iamges: imagesBooking.value
     }
-    console.log('📦 Booking Data:', completeData)
   })
 
   return {
