@@ -128,15 +128,15 @@ const scrollToContact = () => {
               class="d-md-none d-flex justify-end ml-auto px-6 py-4  text-sm-body-2 text-md-body-1">
               จองคิว
             </v-btn> -->
-            <div class="ml-auto">
+            <div class="ml-auto d-md-none d-flex">
               <Login />
             </div>
             <!-- <Menu2Icon class="d-md-none d-flex drawer-icon no-effect ml-2 mr-0" @click.stop="drawer = !drawer"
               size="30">
             </Menu2Icon> -->
-            <v-menu elevation="0">
+            <v-menu elevation="0" class="">
               <template v-slot:activator="{ props }">
-                <v-btn icon="mdi-dots-vertical" variant="text" v-bind="props"></v-btn>
+                <v-btn icon="mdi-dots-vertical" variant="text" class="d-md-none d-flex" v-bind="props"></v-btn>
               </template>
 
               <v-list elevation="0">

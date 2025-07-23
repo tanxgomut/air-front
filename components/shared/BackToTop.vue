@@ -29,7 +29,7 @@ function toTop() {
 <template>
     <div id="app" v-cloak>
         <transition name="fade">
-            <v-btn id="pagetop" class="position-fixed right-0 bottom-0 mb-10 mr-5 z-index1" v-show="scY > 350" @click="toTop" icon
+            <v-btn id="pagetop" class="position-fixed d-none d-md-flex  right-0 bottom-0 mb-10 mr-5 z-index1" v-show="scY > 350" @click="toTop" icon
                 color="primary" scroll-to="'#scrolltop'" elevation="0" rounded="pill">
                 <ChevronUpIcon size="25" />
             </v-btn>
