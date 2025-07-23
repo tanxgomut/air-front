@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 /*Location Select*/
+const router = useRouter()
 const isLogin = useCookie('isLogin')
 const select = ref('Thailand');
 const location = ref(['United States', 'United Kingdom', 'Japan', 'Thailand']);
@@ -21,6 +22,10 @@ function notify() {
     $toast.success('success!')
 }
 
+const logOut = () => {
+    isLogin.value = null
+    router.push('/')
+}
 
 </script>
 
@@ -33,7 +38,7 @@ function notify() {
                     <h5 class="text-h5">Personal Details</h5>
                     <div class="text-subtitle-1 text-medium-emphasis mt-2">To change your personal detail , edit and
                         save from here</div>
-                    <v-btn  variant="text" color="error" class="mt-4"  @click="isLogin = null">
+                    <v-btn  variant="text" color="error" class="mt-4"  @click="logOut">
                         Log out
                     </v-btn>
                     <div class="mt-5">
