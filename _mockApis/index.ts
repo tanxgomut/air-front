@@ -1,9 +1,9 @@
 import mock from './mockAdapter';
 
 import './header/Menu';
-import './pages/about';
+// import './pages/about';
 import './pages/service';
-import  './pages/blogData';
+// import  './pages/blogData';
 import  './pages/booking';
 // import './pages/portfolioData';
 import './footer/index';
