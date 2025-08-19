@@ -4,7 +4,7 @@ import { ref, computed } from 'vue'
 import { useDisplay } from 'vuetify'
 import Login from "@/layouts/shared/auth/Login.vue";
 
-const { smAndDown } = useDisplay()
+const { mdAndDown } = useDisplay()
 const router = useRouter()
 const route = useRoute()
 const isLogin = useCookie('isLogin')
@@ -63,14 +63,26 @@ const scrollToContact = () => {
 
 <template>
     <Login v-model="isOpenLogin" :is-button="false" />
-    <v-bottom-navigation v-if="smAndDown" elevation="0" grow class="!h-[80px]">
+    <!-- <v-bottom-navigation  elevation="0" grow class="!h-[80px] d-flex  d-md-none d-lg-none ">
         <button v-for="tab in tabs" :key="tab.to" @click="gotoPage(tab.to, tab.label)"
             class="flex flex-col items-center justify-center w-full pb-6 transition-all rounded-md"
             :class="isActive(tab) ? 'navigation-active' : 'text-muted'">
             <v-icon :icon="tab.icon" size="22" />
             <span class="text-xs mt-1">{{ tab.label }}</span>
         </button>
-    </v-bottom-navigation>
+    </v-bottom-navigation> -->
+    <v-sheet>
+        <div class="fixed bottom-0 left-0 right-0 bg-background shadow-sm border-t !h-[80px] flex md:hidden lg:hidden z-1004">
+            <button v-for="tab in tabs" :key="tab.to" @click="gotoPage(tab.to, tab.label)"
+                class="flex flex-col items-center justify-center w-full pb-6 transition-all rounded-md"
+                :class="isActive(tab) ? 'navigation-active' : 'text-muted'">
+                <v-icon :icon="tab.icon" size="22" />
+                <span class="text-xs mt-1">{{ tab.label }}</span>
+            </button>
+        </div>
+    </v-sheet>
+
+
 </template>
 
 <style scoped lang="scss">

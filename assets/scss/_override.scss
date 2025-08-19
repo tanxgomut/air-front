@@ -35,6 +35,10 @@ html {
     }
 }
 
+.bg-background {
+    background: rgb(var(--v-theme-background)) !important;
+}
+
 .text-muted {
     color: rgb(var(--v-theme-textSecondary));
 }

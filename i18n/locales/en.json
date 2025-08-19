@@ -10,7 +10,8 @@
     "contact": {
       "title": "Contact Us",
       "description": "Get in touch with our air cleaning team for fast service.",
-      "ogImage": "/images/seo/contact-en.jpg"
+      "ogImage": "/images/seo/contact-en.jpg",
+      "twitterImage": "/images/seo/contact-twitter-en.jpg"
     },
     "faq": {
       "title": "FAQ",

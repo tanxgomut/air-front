@@ -9,13 +9,12 @@ export const useBookingForm = () => {
   const airType = ref<any[]>([])
   const slips = ref<{ file: File; preview: string } | null>(null)
   const imagesBooking = ref<{ file: File; preview: string }[]>([])
-console.log(airType.value, 'airType.value');
 
   const schema = object({
     name: string().required(t('กรุณากรอกชื่อ')),
     tel: string()
       .required('กรุณากรอกเบอร์โทร')
-       .matches(/^0[689]\d{8}$/, 'เบอร์โทรศัพท์ไม่ถูกต้อง'),
+      .matches(/^0[689]\d{8}$/, 'เบอร์โทรศัพท์ไม่ถูกต้อง'),
     address: string().required('กรุณากรอกที่อยู่'),
     date: string().required('กรุณาเลือกวันที่'),
     time: string().required('กรุณาเลือกช่วงเวลา'),

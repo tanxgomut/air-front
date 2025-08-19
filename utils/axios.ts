@@ -1,11 +1,7 @@
-/**
- * axios setup to use mock service
- */
-
 import axios from "axios";
 
 const axiosServices = axios.create({
-  baseURL: 'https://api.example.com', // เปลี่ยนเป็น URL API ของคุณ
+  baseURL: process.env.NUXT_PUBLIC_API_BASE_URL || 'https://api.example.com',
 })
 
 axiosServices.interceptors.request.use(
